@@ -10,12 +10,14 @@ class Keyboard:
         return key == pygame.K_x or key == pygame.K_ESCAPE
 
     def get_key_press(self, game_event):
+        result = None
         for event in game_event:
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and self.is_exit(event.key)):
                 pygame.quit ()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                return event.key
+                result = event.key
+        return result
 
     def get_direction(self, key, currentDir, allowOpposite):
         if (key == pygame.K_UP or key == pygame.K_w) and (allowOpposite or currentDir != Movement.DOWN):
